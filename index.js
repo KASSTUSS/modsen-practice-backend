@@ -20,6 +20,7 @@ app.get("/volumes", (req, res) => {
   const requestToBooksApi =
     "https://www.googleapis.com/books/v1/volumes" +
     decodeURI(req.url).split("/volumes")[1];
+    console.log(requestToBooksApi)
   fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
       responceFromBooksApi,
