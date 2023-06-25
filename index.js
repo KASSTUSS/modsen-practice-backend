@@ -13,12 +13,12 @@ app.get("/", (req, res) => {
   const requestToBooksApi =
     "https://www.googleapis.com/books/v1/volumes?" +
     decodeURI(req.url).split("?")[1];
-  await fetching(requestToBooksApi).then((responceFromBooksApi) => {
+  fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
       responceFromBooksApi,
     });
   });
-  console.log(requestToBooksApi)
+  console.log(requestToBooksApi, responceFromBooksApi)
 });
 
 app.listen(PORT, () => {
