@@ -15,12 +15,20 @@ const fetching = async (url) => {
 
   return data;
 };
+const startReq = "https://www.googleapis.com/books/v1/volumes";
 
-app.get("/volumes", (req, res) => {
-  const requestToBooksApi =
-    "https://www.googleapis.com/books/v1/volumes" +
-    decodeURI(req.url).split("/volumes")[1];
-    console.log(requestToBooksApi)
+app.get("/books", (req, res) => {
+  const requestToBooksApi = startReq + decodeURI(req.url).split("/books")[1];
+  fetching(requestToBooksApi).then((responceFromBooksApi) => {
+    res.json({
+      responceFromBooksApi,
+    });
+  });
+});
+
+app.get("/book", (req, res) => {
+  const requestToBooksApi = startReq + decodeURI(req.url).split("/book?")[1];
+  console.log(requestToBooksApi);
   fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
       responceFromBooksApi,
