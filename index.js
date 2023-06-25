@@ -1,7 +1,12 @@
 const express = require("express");
 const axios = require("axios");
-const app = express();
+
 const PORT = process.env.PORT || 3000;
+
+const app = express();
+app.listen(PORT, () => {
+  console.log(`Server is starting on PORT ${PORT}`);
+});
 
 const fetching = async (url) => {
   const { data } = await axios.get(url, {});
@@ -18,9 +23,5 @@ app.get("/volumes", (req, res) => {
       responceFromBooksApi,
     });
   });
-  console.log(requestToBooksApi, responceFromBooksApi)
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is starting on PORT ${PORT}`);
+  console.log(requestToBooksApi, responceFromBooksApi);
 });
