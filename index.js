@@ -20,7 +20,7 @@ app.get("/volumes", (req, res) => {
     decodeURI(req.url).split("?")[1];
   fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
-      urll: requestToBooksApi,
+      responceFromBooksApi,
     });
   });
 });
