@@ -9,7 +9,7 @@ const fetching = async (url) => {
   return data;
 };
 
-app.get("/", (req, res) => {
+app.get("/volumes", (req, res) => {
   const requestToBooksApi =
     "https://www.googleapis.com/books/v1/volumes?" +
     decodeURI(req.url).split("?")[1];
