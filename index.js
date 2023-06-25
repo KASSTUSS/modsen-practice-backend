@@ -18,8 +18,8 @@ const fetching = async (url) => {
 
 app.get("/volumes", (req, res) => {
   const requestToBooksApi =
-    "https://www.googleapis.com/books/v1/volumes?" +
-    decodeURI(req.url).split("?")[1];
+    "https://www.googleapis.com/books/v1/volumes" +
+    decodeURI(req.url).split("/volumes")[1];
   fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
       responceFromBooksApi,
