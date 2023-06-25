@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const PORT = 3000;
+const PORT = 3000 || process.env.PORT;
 
 const fetching = async (url) => {
   const { data } = await axios.get(url, {});
