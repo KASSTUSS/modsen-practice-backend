@@ -28,9 +28,26 @@ app.get("/books", (req, res) => {
 
 app.get("/book", (req, res) => {
   const requestToBooksApi = startReq + "/" + decodeURI(req.url).split("/book?")[1];
-  fetching(requestToBooksApi).then((responceFromBooksApi) => {
+
+  const userAgent = 'Search books/1.0';
+
+  const config = {
+    method: 'get', // Метод запроса (get, post, put, delete и др.)
+    url: requestToBooksApi,
+    headers: {
+      'User-Agent': userAgent // Устанавливаем заголовок User-Agent
+    }
+  };
+
+// Выполняем запрос
+axios(config)
+  .then(function (response) {
     res.json({
-      responceFromBooksApi,
+      response.data.responceFromBooksApi,
     });
+  })
+  .catch(function (error) {
+    // Обработка ошибок
+    console.error(error);
   });
 });
