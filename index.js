@@ -11,7 +11,27 @@ app.listen(PORT, () => {
 });
 
 const fetching = async (url) => {
+  
   const { data } = await axios.get(url, {});
+
+  return data;
+};
+
+const fetchingWithAgent = async (url) => {
+  const userAgent = 'Search books/1.0';
+
+  const config = {
+    method: 'get', // Метод запроса (get, post, put, delete и др.)
+    url: url,
+    headers: {
+      'User-Agent': userAgent // Устанавливаем заголовок User-Agent
+    }
+  };
+  let data;
+  
+  await axios(config).then(res => {
+    data = res.data;
+  })
 
   return data;
 };
@@ -29,21 +49,10 @@ app.get("/books", (req, res) => {
 app.get("/book", (req, res) => {
   const requestToBooksApi = startReq + "/" + decodeURI(req.url).split("/book?")[1];
 
-  const userAgent = 'Search books/1.0';
-
-  const config = {
-    method: 'get', // Метод запроса (get, post, put, delete и др.)
-    url: requestToBooksApi,
-    headers: {
-      'User-Agent': userAgent // Устанавливаем заголовок User-Agent
-    }
-  };
-
-// Выполняем запрос
-const { data } = await axios(config);
-
-  res.json({
-    data.responceFromBooksApi,
+  fetchingWithAgent(requestToBooksApi).then((responceFromBooksApi) => {
+    res.json({
+      responceFromBooksApi,
+    });
   });
  
 });
