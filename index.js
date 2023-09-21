@@ -40,14 +40,10 @@ app.get("/book", (req, res) => {
   };
 
 // Выполняем запрос
-axios(config)
-  .then(function (response) {
-    res.json({
-      response.data.responceFromBooksApi,
-    });
-  })
-  .catch(function (error) {
-    // Обработка ошибок
-    console.error(error);
+const { data } = await axios(config);
+
+  res.json({
+    data.responceFromBooksApi,
   });
+ 
 });
