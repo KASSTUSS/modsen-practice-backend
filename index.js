@@ -18,7 +18,7 @@ const fetching = async (url) => {
 };
 
 const fetchingWithAgent = async (url) => {
-  const userAgent = 'Search books/1.0';
+  const userAgent = 'Chrome/117.0.0.0';
 
   const config = {
     method: 'get', // Метод запроса (get, post, put, delete и др.)
