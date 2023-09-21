@@ -28,13 +28,9 @@ app.get("/books", (req, res) => {
 
 app.get("/book", (req, res) => {
   const requestToBooksApi = startReq + "/" + decodeURI(req.url).split("/book?")[1];
-  // console.log(requestToBooksApi);
-  // fetching(requestToBooksApi).then((responceFromBooksApi) => {
-  //   res.json({
-  //     responceFromBooksApi,
-  //   });
-  // });
-   res.json({
-      123: 123,
+  fetching(requestToBooksApi).then((responceFromBooksApi) => {
+    res.json({
+      responceFromBooksApi,
     });
+  });
 });
