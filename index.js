@@ -17,24 +17,6 @@ const fetching = async (url) => {
   return data;
 };
 
-const fetchingWithAgent = async (url) => {
-  const userAgent = 'Chrome/117.0.0.0';
-
-  const config = {
-    method: 'get', // Метод запроса (get, post, put, delete и др.)
-    url: url,
-    headers: {
-      'User-Agent': userAgent // Устанавливаем заголовок User-Agent
-    }
-  };
-  let data;
-  
-  await axios(config).then(res => {
-    data = res.data;
-  })
-
-  return data;
-};
 const startReq = "https://www.googleapis.com/books/v1/volumes";
 
 app.get("/books", (req, res) => {
@@ -49,7 +31,7 @@ app.get("/books", (req, res) => {
 app.get("/book", (req, res) => {
   const requestToBooksApi = startReq + "/" + decodeURI(req.url).split("/book?")[1];
 
-  fetchingWithAgent(requestToBooksApi).then((responceFromBooksApi) => {
+  fetching(requestToBooksApi).then((responceFromBooksApi) => {
     res.json({
       responceFromBooksApi,
     });
